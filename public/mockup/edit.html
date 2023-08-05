@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ログイン機能付きタスク管理サービス</title>
+    </head>
+    <body>
+        <h1>タスクの編集</h1>
+        <form action="./detail.html" method="post">
+            タスク名:<input value="Laraver学習"><br>
+            期限:<input type="date" value="2022-02-15"><br>
+            タスク詳細:<textarea>Laraverの学習を最後までやり遂げる！</textarea><br>
+            重要性:<label><input type="radio" name="priority">低い</label> /
+                   <label><input type="radio" name="priority" checked>普通</label> /
+                   <label><input type="radio" name="priority">高い</label><br>
+            <button>タスクを編集する</button>
+        </form>
+        <hr>
+        <menu label="リンク">
+            <a href="./top.html">一覧画面に遷移する</a> / <a href="./detail.html">詳細画面に遷移する</a><br>
+            <a href="./index.html">ログアウト</a><br>
+        </menu>
+    </body>
+</html>

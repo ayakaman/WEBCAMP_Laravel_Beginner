@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ログイン機能付きタスク管理サービス</title>
+    </head>
+    <body>
+        <h1>タスク詳細</h1>
+        <form disabled>
+            タスク名:<input value="Laravel学習" disabled><br>
+            期限:<input type="date" value="2022-02-15" disabled><br>
+            タスク詳細:<textarea disabled>Laravelの学習を最後までやり遂げる！</textarea><br>
+            重要性:<label><input type="radio" name="priority" disabled>低い</label> /
+                   <label><input type="radio" name="priority" checked>普通</label> /
+                   <label><input type="radio" name="priority" disabled>高い</label><br>
+        </form>
+        <h1>タスク削除</h1>
+        <a href="./top.html" onclick="return confirm('タスクを削除します(削除したら戻せません)。\nよろしいですか＞');">タスクを削除する</a><br>
+        <hr>
+        <menu label="リンク">
+            <a href="./top.html">一覧画面に遷移する</a> / <a href="./edit.html">編集画面に遷移する</a><br>
+            <a href="./index.html">ログアウト</a><br>
+        </menu>
+
+    </body>
+</html>
