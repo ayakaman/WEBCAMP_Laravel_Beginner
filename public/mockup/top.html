@@ -3,26 +3,27 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ログイン機能付きタスク管理サービス</title>
+        <title>ログイン機能付きタスク管理サービス(詳細画面)</title>
     </head>
     <body>
         <h1>タスクの登録</h1>
-        <form action="./top.html" method="post">
-            タスク名:<input><br>
-            期限:<input type="date"><br>
-            タスク詳細:<textarea></textarea><br>
-            重要性:<label><input type="radio" name"priority">低い</label>　/
-                   <label><input type="radio" name"priority" checked>普通</label>　/
-                   <label><input type="radio" name"priority">高い</label><br>
-            <button>タスク登録する</button>
-        </form>
-    <h1>タスク一覧</h1>
-    <a href="./top.html">CSVダウンロード</a><br>
-    <table border="1">
+            <form action="./top.html" method="post">
+                タスク名:<input><br>
+                期限:<input type="date"><br>
+                タスク詳細:<textarea></textarea><br>
+                重要度:<label><input type="radio" name="priority">低い</label> /
+                    <label><input type="radio" name="priority" checked>普通</label> /
+                    <label><input type="radio" name="priority">高い</label><br>
+                <button>タスクを登録する</button>
+            </form>
+
+        <h1>タスクの一覧</h1>
+        <a href="./top.html">CSVダウンロード</a><br>
+        <table border="1">
         <tr>
             <th>タスク名
             <th>期限
-            <th>重要性
+            <th>重要度
         <tr>
             <td>HTML formの学習
             <td>2022/01/01
@@ -38,22 +39,29 @@
             <td><a href="./edit.html">編集</a>
             <td><form action="./top.html"><button>完了</button></form>
         <tr>
+            <td>RDBの学習
+            <td>2022/02/01
+            <td>普通
+            <td><a href="./detail.html">詳細閲覧</a>
+            <td><a href="./edit.html">編集</a>
+            <td><form action="./top.html"><button>完了</button></form>
+        <tr>
             <td>Laravelの学習
             <td>2022/02/15
             <td>普通
             <td><a href="./detail.html">詳細閲覧</a>
             <td><a href="./edit.html">編集</a>
             <td><form action="./top.html"><button>完了</button></form>
-    </table>
-    <!-- ページネーション -->
-    現在 1 ページ目<br>
-    <a href="./top.html">最初のページ</a> /
-    <a href="./top.html">前に戻る</a> /
-    <a href="./top.html">次に進む</a>
-    <br>
-    <hr>
-    <menu label="リンク">
-        <a href="/index.html">ログアウト</a><br>
-    </menu>
+        </table>
+        <!-- ページネーション -->
+        現在 1 ページ目<br>
+        <a href="./top.html">最初のページ</a> /
+        <a href="./top.html">前に戻る</a> /
+        <a href="./top.html">次に進む</a>
+        <br>
+        <hr>
+        <menu label="リンク">
+        <a href="./index.html">ログアウト</a><br>
+        </menu>
     </body>
 </html>
