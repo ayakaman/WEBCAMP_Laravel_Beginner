@@ -19,6 +19,7 @@ use App\Http\Controllers\TestController;
 
 // タスク管理システム
 Route::get('/', [AuthController::class, 'index']);
+Route::post('/login', [AuthController::class, 'login']);
 Route::get('/task/list', [TaskController::class, 'list']);
 
 //テスト用
