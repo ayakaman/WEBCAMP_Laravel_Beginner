@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\Task as TaskModel;
 
 class TaskRegisterPostRequest extends FormRequest
 {
@@ -19,7 +20,7 @@ class TaskRegisterPostRequest extends FormRequest
             'name' => ['required', 'max:128'],
             'period' => ['required', 'date', 'after_or_equal:today'],
             'detail' => ['max:65535'],
-            'priority' => ['required', 'numeric', Rule::in([1, 2, 3]) ],
+            'priority' => ['required', 'numeric', Rule::in( array_keys(TaskModel::PRIORITY_VALUE) ) ],
         ];
     }
 }
