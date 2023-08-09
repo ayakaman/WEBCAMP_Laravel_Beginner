@@ -70,4 +70,25 @@ var_dump($sql);
         return redirect('/task/list');
 
      }
+
+     /**
+      * タスク詳細閲覧
+      */
+     public function detail($task_id)
+     {
+         //task_id レコード取得
+         $task = TaskModel::find($task_id);
+         if ($task === null) {
+             return redirect('/task/list');
+         }
+         //本人以外のタスクならNGに
+         if ($task->user_id !== Auth::id()) {
+             return redirect('/task/list');
+         }
+
+
+         //テンプレートに「取得したレコード」情報渡す
+         return view('task.detail', ['task' => $task]);
+
+     }
 }
