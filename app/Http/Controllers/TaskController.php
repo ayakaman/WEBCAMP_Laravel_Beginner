@@ -76,19 +76,89 @@ var_dump($sql);
       */
      public function detail($task_id)
      {
-         //task_id レコード取得
+         //
+         return $this->singleTaskRender($task_id, 'task.detail');
+     }
+
+     /**
+      * タスク編集画面
+      */
+     public function edit($task_id)
+     {
+         //task_idレコード取得(引数)
+         //テンプレートへ「取得コード」情報渡す
+         return $this->singleTaskRender($task_id, 'task.edit');
+     }
+
+     /**
+      * 単一タスクModel取得
+      */
+     protected function getTaskModel($task_id)
+     {
+          //task_idレコード取得
          $task = TaskModel::find($task_id);
+         if ($task === null) {
+             return null;
+         }
+
+         //本人以外のタスクならNGに
+         if ($task->user_id !== Auth::id()) {
+             return null;
+         }
+
+         //
+         return $task;
+     }
+
+     /**
+      * 「単一のタスク」表示
+      */
+    protected function singleTaskRender($task_id, $template_name)
+    {
+        //task_idレコード取得
+        $task = $this->getTaskModel($task_id);
+        if ($task === null){
+             return redirect('/task/list');
+        }
+
+       //テンプレートに「取得したコード」情報を渡す
+       return view($template_name, ['task' => $task]);
+
+    }
+
+     /**
+      * タスク編集処理
+      */
+     public function editSave(TaskRegisterPostRequest $request, $task_id)
+     {
+         //formからの情報取得
+         $datum = $request->validated();
+
+          //task_idレコード取得
+         $task = $this->getTaskModel($task_id);
          if ($task === null) {
              return redirect('/task/list');
          }
-         //本人以外のタスクならNGに
-         if ($task->user_id !== Auth::id()) {
-             return redirect('/task/list');
+
+         //レコード内容UPDATE
+         $task->name = $datum['name'];
+         $task->period = $datum['period'];
+         $task->detail = $datum['detail'];
+         $task->priority = $datum['priority'];
+
+         //可変変数を使用した書き方
+         foreach($datum as $k => $v) {
+             $task->$k = $v;
          }
 
+         //レコード更新
+         $task->save();
 
-         //テンプレートに「取得したレコード」情報渡す
-         return view('task.detail', ['task' => $task]);
+         //タスク編集成功
+         $request->session()->flash('front.task_edit_success', true);
 
+         //詳細閲覧画面にリダイレクト
+         return redirect(route('detail', ['task_id' => $task->id]));
      }
+
 }
