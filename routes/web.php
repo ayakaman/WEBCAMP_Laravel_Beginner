@@ -5,6 +5,8 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,16 @@ Route::middleware(['auth'])->group(function () {
     });
        //
        Route::get('/logout', [AuthController::class, 'logout']);
+});
+
+//管理画面
+Route::prefix('/admin')->group(function () {
+   Route::get('', [AdminAuthController::class, 'index'])->name('admin.index');
+   Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
+   Route::middleware(['auth:admin'])->group(function () {
+        Route::get('/top',  [AdminHomeController::class, 'top'])->name('admin.top');
+   });
+   Route::get('/logout', [AdminAuthController::class, 'logout']);
 });
 
 //テスト用
