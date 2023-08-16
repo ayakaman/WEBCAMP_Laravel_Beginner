@@ -14,7 +14,7 @@
             @csrf
             ログインID：<input name="login_id" value="{{ old('login_id') }}"><br>
             パスワード：<input name="password" type="password"><br>
-            <button>ログインする</button>
+            <button class="btn btn-primary mb-3">ログインする</button>
         </form>
     </body>
 @endsection
