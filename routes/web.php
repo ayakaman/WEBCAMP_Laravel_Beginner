@@ -8,6 +8,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\CompletedTaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,10 @@ Route::middleware(['auth'])->group(function () {
        Route::delete('/delete/{task_id}', [TaskController::class, 'delete'])->whereNumber('task_id')->name('delete');
        Route::post('/complete/{task_id}', [TaskController::class, 'complete'])->whereNumber('task_id')->name('complete');
        Route::get('/csv/download', [TaskController::class, 'csvDownload']);
+
     });
+       //完了タスク
+       Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list']);
        //
        Route::get('/logout', [AuthController::class, 'logout']);
 });
@@ -48,6 +52,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('/top',  [AdminHomeController::class, 'top'])->name('admin.top');
         Route::get('/user/list', [AdminUserController::class, 'list'])->name('admin.user.list');
    });
+
+   //
    Route::get('/logout', [AdminAuthController::class, 'logout']);
 });
 
@@ -58,3 +64,5 @@ Route::get('/welcome/second', [WelcomeController::class, 'second']);
 // form入力テスト用
 Route::get('/test', [TestController::class, 'index']);
 Route::post('/test/input', [TestController::class, 'input']);
+
+
