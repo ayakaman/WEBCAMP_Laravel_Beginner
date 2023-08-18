@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
- 
+
     //完了タスク
     Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list']);
     //

@@ -38,7 +38,7 @@ class UserController extends Controller
         }
 
         //
-        $request->session()->regenerate();
+        $request->session()->flash('front.user_register_success', true);
         return redirect()->intended('/');
     }
 
