@@ -32,9 +32,6 @@ class UserController extends Controller
         // データの取得
         $datum = $request->validated();
         $datum['password'] = Hash::make($datum['password']);
-        //$user = Auth::user();
-        //$id = Auth::id();
-        //var_dump($datum, $user, $id); exit;
 
         //INSERT
         try {
@@ -42,13 +39,6 @@ class UserController extends Controller
         } catch(\Throwable $e) {
             echo $e->getMessage();
             exit;
-        }
-
-        // 認証
-        if (Auth::attempt($datum) === false) {
-            return back()
-                   ->withInput() // 入力値の保持
-                   ;
         }
 
          //登録成功
