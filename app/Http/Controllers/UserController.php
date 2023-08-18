@@ -3,8 +3,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRegisterPost;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UserRegisterPost;
+
 
 class UserController extends Controller
 {
@@ -28,7 +30,7 @@ class UserController extends Controller
 
         // データの取得
         $datum = $request->validated();
-        //var_dump($datum); exit;
+        $datum['password'] = Hash::make($datum['password']);
 
         // 認証
         if (Auth::attempt($datum) === false) {
