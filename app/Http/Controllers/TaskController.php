@@ -278,8 +278,7 @@ var_dump($sql);
          $csv_string_sjis = mb_convert_encoding($csv_string, 'SJIS', 'UTF-8');
 
          //ダウンロードダイル名作成
-         $download_filename = 'task_list.' . date('Ymd') . 'csv';
-
+         $download_filename = 'task_list.' . date('Ymd') . '.csv';
          //CSV出力
         return response($csv_string_sjis)
                ->header('Content-Type', 'text/csv')

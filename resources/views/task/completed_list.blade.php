@@ -6,7 +6,7 @@
 {{-- メインコンテンツ --}}
 @section('contets')
         <h1>完了タスクの一覧</h1>
-        <a href="/task/csv/download">タスク一覧に戻る</a><br>
+        <a href="/task/list">タスク一覧に戻る</a><br>
         <table border="1">
         <tr>
             <th>タスク名
@@ -25,7 +25,7 @@
         {{-- $list->links() --}}
         現在 {{ $list->currentPage() }} ページ目<br>
         @if ($list->onFirstPage() === false)
-        <a href="/task/list">最初のページ</a>
+        <a href="/completed_tasks/list">最初のページ</a>
         @else
         最初のページ
         @endif
